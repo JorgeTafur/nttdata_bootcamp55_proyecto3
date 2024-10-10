@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: Credit Card Service API
+  description: API para gestionar tarjetas de crédito.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+    description: Servidor local
+paths:
+  /cards:
+    get:
+      tags:
+        - tarjeta
+      summary: Listar tarjetas de crédito
+      operationId: listCreditCards
+      responses:
+        '200':
+          description: Lista de tarjetas de credito
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditCardResponse'
+        'default':
+          description: Error en la obtención de clientes
+    post:
+      tags:
+        - tarjeta
+      summary: Crear una nueva tarjeta de crédito
+      operationId: registerCreditCard
+      requestBody:
+        description: Detalles de la nueva tarjeta de crédito
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreditCardRequest"
+      responses:
+        '200':
+          description: Tarjeta creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCardResponse"
+        default:
+          description: Error en la creacion de tarjeta de credito
+  /cards/{id}:
+    get:
+      tags:
+        - tarjeta
+      summary: Obtener datos de una tarjeta de crédito
+      operationId: getCreditCardById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tarjeta actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCardResponse"
+        default:
+          description: Error en obtener datos de la tarjeta de credito
+    put:
+      tags:
+        - tarjeta
+      summary: Actualizar una tarjeta de crédito
+      operationId: updateCreditCard
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Detalles de la tarjeta de crédito actualizada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreditCardRequest"
+      responses:
+        '200':
+          description: Tarjeta actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditCardResponse"
+        default:
+          description: Error en la actualización de tarjeta de credito
+    delete:
+      tags:
+        - tarjeta
+      summary: Eliminar tarjeta por su ID
+      operationId: deleteCreditCardById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Tarjeta de credito eliminada
+        'default':
+          description: Error al eliminar la tarjeta
+components:
+  schemas:
+    CreditCardRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la tarjeta de crédito
+        cardNumber:
+          type: string
+          description: Número de la tarjeta de crédito
+        accountHolder:
+          type: string
+          description: Titular de la cuenta
+        balance:
+          type: number
+          description: Saldo disponible en la tarjeta
+        creditLimit:
+          type: number
+          description: Límite de crédito disponible
+    CreditCardResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la tarjeta de crédito
+        cardNumber:
+          type: string
+          description: Número de la tarjeta de crédito
+        accountHolder:
+          type: string
+          description: Titular de la cuenta
+        balance:
+          type: number
+          description: Saldo disponible en la tarjeta
+        creditLimit:
+          type: number
+          description: Límite de crédito disponible
