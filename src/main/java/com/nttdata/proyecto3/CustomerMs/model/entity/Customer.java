@@ -1,16 +1,19 @@
 package com.nttdata.proyecto3.CustomerMs.model.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.Data;
-import nonapi.io.github.classgraph.json.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
-
+@Entity
 @Data
-@Document(collection = "customers")
+@Table(name = "customers")
 public class Customer {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
     private String apellido;
     private String dni;
