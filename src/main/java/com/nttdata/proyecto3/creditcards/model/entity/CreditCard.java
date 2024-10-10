@@ -1,4 +1,4 @@
-package com.nttdata.creditcards.model.entity;
+package com.nttdata.proyecto3.creditcards.model.entity;
 
 import lombok.Data;
 import nonapi.io.github.classgraph.json.Id;

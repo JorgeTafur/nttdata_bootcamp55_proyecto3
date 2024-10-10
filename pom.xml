@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nttdata</groupId>
-	<artifactId>creditcards</artifactId>
+	<artifactId>proyecto3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>creditcards</name>
+	<name>proyecto3</name>
 	<description>Gestión de tarjetas de crédito</description>
 	<url/>
 	<licenses>
@@ -112,8 +112,8 @@
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.nttdata.creditcards.api</apiPackage>
-							<modelPackage>com.nttdata.creditcards.model</modelPackage>
+							<apiPackage>com.nttdata.proyecto3.api</apiPackage>
+							<modelPackage>com.nttdata.proyecto3.model</modelPackage>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 							<configOptions>
 								<delegatePattern>true</delegatePattern>

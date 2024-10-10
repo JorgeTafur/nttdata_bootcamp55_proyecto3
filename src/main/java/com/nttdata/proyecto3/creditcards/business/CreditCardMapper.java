@@ -1,8 +1,8 @@
-package com.nttdata.creditcards.business;
+package com.nttdata.proyecto3.creditcards.business;
 
-import com.nttdata.creditcards.model.CreditCardRequest;
-import com.nttdata.creditcards.model.CreditCardResponse;
-import com.nttdata.creditcards.model.entity.CreditCard;
+import com.nttdata.proyecto3.creditcards.model.entity.CreditCard;
+import com.nttdata.proyecto3.model.CreditCardRequest;
+import com.nttdata.proyecto3.model.CreditCardResponse;
 import org.springframework.stereotype.Component;
 
 @Component

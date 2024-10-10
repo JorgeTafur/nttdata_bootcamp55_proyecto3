@@ -109,6 +109,210 @@ paths:
           description: Tarjeta de credito eliminada
         'default':
           description: Error al eliminar la tarjeta
+  /clientes:
+    get:
+      tags:
+        - cliente
+      summary: Listar clientes
+      operationId: listCustomers.
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerResponse'
+        'default':
+          description: Error en la obtención de clientes
+    post:
+      tags:
+        - cliente
+      summary: Crear un cliente
+      operationId: registerCustomer
+      requestBody:
+        description: Registrar un cliente
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerRequest"
+      responses:
+        '200':
+          description: Cliente registrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en la creacion de cliente
+  /clientes/{id}:
+    get:
+      tags:
+        - cliente
+      summary: Obtener datos de un cliente
+      operationId: getCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cliente obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en obtener datos del cliente
+    put:
+      tags:
+        - cliente
+      summary: Actualizar un cliente
+      operationId: updateCustomer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Detalles del cliente actualizada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerRequest"
+      responses:
+        '200':
+          description: Cliente actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en la actualización de cliente
+    delete:
+      tags:
+        - cliente
+      summary: Eliminar cliente por su ID
+      operationId: deleteCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cliente eliminado
+        'default':
+          description: Error al eliminar el cliente
+  /cuentas:
+    get:
+      tags:
+        - cuenta
+      summary: Listar cuentas
+      operationId: listAccounts.
+      responses:
+        '200':
+          description: Lista de cuentas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+        'default':
+          description: Error en la obtención de cuentas
+    post:
+      tags:
+        - cuenta
+      summary: Crear una cuenta
+      operationId: registerAccount
+      requestBody:
+        description: Registrar una cuenta
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountRequest"
+      responses:
+        '200':
+          description: Cuenta registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en la creacion de cuenta
+  /cuentas/{id}:
+    get:
+      tags:
+        - cuenta
+      summary: Obtener datos de una cuenta
+      operationId: getAccountById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cuenta obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en obtener datos de la cuenta
+    put:
+      tags:
+        - cuenta
+      summary: Actualizar una cuenta
+      operationId: updateAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Detalles de la cuenta actualizada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountRequest"
+      responses:
+        '200':
+          description: Cuenta actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en la actualización de cuenta
+    delete:
+      tags:
+        - cuenta
+      summary: Eliminar cuenta por su ID
+      operationId: deleteAccountById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cuenta eliminada
+        'default':
+          description: Error al eliminar la cuenta
 components:
   schemas:
     CreditCardRequest:
@@ -147,3 +351,77 @@ components:
         creditLimit:
           type: number
           description: Límite de crédito disponible
+    CustomerRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del cliente
+        nombre:
+          type: string
+          description: Nombre del cliente
+        apellido:
+          type: string
+          description: Apellido del cliente
+        dni:
+          type: string
+          description: DNI del cliente
+        email:
+          type: string
+          description: Email del cliente
+    CustomerResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del cliente
+        nombre:
+          type: string
+          description: Nombre del cliente
+        apellido:
+          type: string
+          description: Apellido del cliente
+        dni:
+          type: string
+          description: DNI del cliente
+        email:
+          type: string
+          description: Email del cliente
+    AccountRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la cuenta
+        numeroCuenta:
+          type: string
+          description: Numero de la cuenta
+        saldo:
+          type: number
+          format: double
+          description: Saldo de la cuenta
+        tipoCuenta:
+          type: string
+          description: Tipo de la cuenta
+        clienteId:
+          type: string
+          description: ID del cliente de la cuenta
+    AccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la cuenta
+        numeroCuenta:
+          type: string
+          description: Numero de la cuenta
+        saldo:
+          type: number
+          format: double
+          description: Saldo de la cuenta
+        tipoCuenta:
+          type: string
+          description: Tipo de la cuenta
+        clienteId:
+          type: string
+          description: ID del cliente de la cuenta

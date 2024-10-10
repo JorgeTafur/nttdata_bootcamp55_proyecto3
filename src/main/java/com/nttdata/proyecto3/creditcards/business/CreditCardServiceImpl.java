@@ -1,9 +1,9 @@
-package com.nttdata.creditcards.business;
+package com.nttdata.proyecto3.creditcards.business;
 
-import com.nttdata.creditcards.model.CreditCardRequest;
-import com.nttdata.creditcards.model.CreditCardResponse;
-import com.nttdata.creditcards.model.entity.CreditCard;
-import com.nttdata.creditcards.repository.CreditCardRepository;
+import com.nttdata.proyecto3.model.CreditCardRequest;
+import com.nttdata.proyecto3.model.CreditCardResponse;
+import com.nttdata.proyecto3.creditcards.model.entity.CreditCard;
+import com.nttdata.proyecto3.creditcards.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class CreditCardServiceImp implements CreditCardService{
+public class CreditCardServiceImpl implements CreditCardService{
 
     @Autowired
     CreditCardRepository creditCardRepository;

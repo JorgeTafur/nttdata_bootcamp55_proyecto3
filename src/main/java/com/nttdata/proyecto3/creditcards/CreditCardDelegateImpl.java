@@ -1,10 +1,10 @@
-package com.nttdata.creditcards;
+package com.nttdata.proyecto3.creditcards;
 
 
-import com.nttdata.creditcards.api.CardsApiDelegate;
-import com.nttdata.creditcards.business.CreditCardService;
-import com.nttdata.creditcards.model.CreditCardRequest;
-import com.nttdata.creditcards.model.CreditCardResponse;
+import com.nttdata.proyecto3.api.CardsApiDelegate;
+import com.nttdata.proyecto3.creditcards.business.CreditCardService;
+import com.nttdata.proyecto3.model.CreditCardRequest;
+import com.nttdata.proyecto3.model.CreditCardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CreditCardDelegateImp implements CardsApiDelegate {
+public class CreditCardDelegateImpl implements CardsApiDelegate {
 
     @Autowired
     CreditCardService creditCardService;

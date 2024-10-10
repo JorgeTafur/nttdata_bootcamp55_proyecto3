@@ -1,13 +1,13 @@
-package com.nttdata.creditcards;
+package com.nttdata.proyecto3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CreditcardsApplication {
+public class Proyecto3Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CreditcardsApplication.class, args);
+		SpringApplication.run(Proyecto3Application.class, args);
 	}
 
 }

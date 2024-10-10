@@ -1,10 +1,10 @@
-package com.nttdata.creditcards;
+package com.nttdata.proyecto3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CreditcardsApplicationTests {
+class Proyecto3ApplicationTests {
 
 	@Test
 	void contextLoads() {
