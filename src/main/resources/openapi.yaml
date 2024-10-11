@@ -22,7 +22,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CreditCardResponse'
-        'default':
+        default:
           description: Error en la obtención de clientes
     post:
       tags:
@@ -107,7 +107,7 @@ paths:
       responses:
         '204':
           description: Tarjeta de credito eliminada
-        'default':
+        default:
           description: Error al eliminar la tarjeta
   /clientes:
     get:
@@ -124,7 +124,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CustomerResponse'
-        'default':
+        default:
           description: Error en la obtención de clientes
     post:
       tags:
@@ -209,7 +209,7 @@ paths:
       responses:
         '204':
           description: Cliente eliminado
-        'default':
+        default:
           description: Error al eliminar el cliente
   /cuentas:
     get:
@@ -226,7 +226,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AccountResponse'
-        'default':
+        default:
           description: Error en la obtención de cuentas
     post:
       tags:
@@ -270,33 +270,6 @@ paths:
                 $ref: "#/components/schemas/AccountResponse"
         default:
           description: Error en obtener datos de la cuenta
-    put:
-      tags:
-        - cuenta
-      summary: Actualizar una cuenta
-      operationId: updateAccount
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Detalles de la cuenta actualizada
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AccountRequest"
-      responses:
-        '200':
-          description: Cuenta actualizada exitosamente
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AccountResponse"
-        default:
-          description: Error en la actualización de cuenta
     delete:
       tags:
         - cuenta
@@ -311,8 +284,65 @@ paths:
       responses:
         '204':
           description: Cuenta eliminada
-        'default':
-          description: Error al eliminar la cuenta
+        default:
+          description: Error en eliminar la cuenta
+  /cuentas/{numeroCuenta}/depositar:
+    put:
+      tags:
+        - cuenta
+      summary: Realizar un depósito en una cuenta bancaria
+      operationId: depositAccount
+      parameters:
+        - name: numeroCuenta
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Monto a depositar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Amount"
+      responses:
+        '200':
+          description: Depósito realizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en el depósito en la cuenta
+
+  /cuentas/{numeroCuenta}/retirar:
+    put:
+      tags:
+        - cuenta
+      summary: Realizar un retiro de una cuenta bancaria
+      operationId: withdrawAccount
+      parameters:
+        - name: numeroCuenta
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Monto a depositar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Amount"
+      responses:
+        '200':
+          description: Retiro realizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en el retiro en la cuenta
 components:
   schemas:
     CreditCardRequest:
@@ -426,3 +456,11 @@ components:
         clienteId:
           type: string
           description: ID del cliente de la cuenta
+    Amount:
+      type: object
+      properties:
+        monto:
+          type: number
+          format: double
+          description: Monto a depositar o retirar
+          example: 100.0

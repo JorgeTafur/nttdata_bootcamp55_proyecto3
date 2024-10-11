@@ -4,6 +4,7 @@ import com.nttdata.proyecto3.AccountMs.business.AccountService;
 import com.nttdata.proyecto3.api.CuentasApiDelegate;
 import com.nttdata.proyecto3.model.AccountRequest;
 import com.nttdata.proyecto3.model.AccountResponse;
+import com.nttdata.proyecto3.model.Amount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,13 @@ public class AccountDelegateImpl implements CuentasApiDelegate {
     }
 
     @Override
-    public ResponseEntity<AccountResponse> updateAccount(String id, AccountRequest accountRequest) {
-        return ResponseEntity.ok(accountService.updateAccount(id, accountRequest));
+    public ResponseEntity<AccountResponse> depositAccount(String numeroCuenta, Amount amount) {
+        return ResponseEntity.ok(accountService.depositAccount(numeroCuenta, amount));
+    }
+
+    @Override
+    public ResponseEntity<AccountResponse> withdrawAccount(String numeroCuenta, Amount amount) {
+        return ResponseEntity.ok(accountService.withdrawAccount(numeroCuenta, amount));
     }
 
     @Override

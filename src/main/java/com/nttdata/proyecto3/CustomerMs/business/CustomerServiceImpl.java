@@ -8,17 +8,10 @@ import com.nttdata.proyecto3.model.AccountResponse;
 import com.nttdata.proyecto3.model.CustomerRequest;
 import com.nttdata.proyecto3.model.CustomerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
