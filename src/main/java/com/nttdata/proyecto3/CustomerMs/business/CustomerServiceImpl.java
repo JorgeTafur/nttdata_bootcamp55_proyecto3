@@ -41,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponse getCustomerById(String id) {
         return customerMapper.getCustomerResponseOfCustomer(
                 customerRepository.findById(id)
-                        .orElseThrow(() -> new NoSuchElementException("Customer not found"))
+                        .orElseThrow(() -> new NoSuchElementException("Cliente no encontrado"))
         );
     }
 
@@ -71,7 +71,7 @@ public class CustomerServiceImpl implements CustomerService {
                     return customerRepository.save(updatedCard);
                 })
                 .map(customerMapper::getCustomerResponseOfCustomer)
-                .orElseThrow(() -> new NoSuchElementException("Customer not found"));
+                .orElseThrow(() -> new NoSuchElementException("Cliente no encontrado"));
     }
 
     @Override
@@ -91,6 +91,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         customerRepository.findById(id)
                 .ifPresentOrElse(customerRepository::delete,
-                        () -> { throw new NoSuchElementException("Customer not found"); });
+                        () -> { throw new NoSuchElementException("Cliente no encontrado"); });
     }
 }

@@ -20,7 +20,4 @@ public class Account {
     private double saldo;
     private TipoCuenta tipoCuenta;
     private String clienteId;
-
-    @Transient
-    public static final double SOBREGIRO_MAXIMO = 500.0;
 }

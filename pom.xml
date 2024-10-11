@@ -12,7 +12,7 @@
 	<artifactId>proyecto3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>proyecto3</name>
-	<description>Gestión de tarjetas de crédito</description>
+	<description>Gestión de transacciones del Banco XYZ</description>
 	<url/>
 	<licenses>
 		<license/>

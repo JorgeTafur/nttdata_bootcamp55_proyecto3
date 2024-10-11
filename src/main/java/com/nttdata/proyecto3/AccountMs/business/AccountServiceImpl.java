@@ -1,6 +1,5 @@
 package com.nttdata.proyecto3.AccountMs.business;
 
-import com.nttdata.proyecto3.AccountMs.model.entity.Account;
 import com.nttdata.proyecto3.AccountMs.repository.AccountRepository;
 import com.nttdata.proyecto3.model.AccountRequest;
 import com.nttdata.proyecto3.model.AccountResponse;
@@ -36,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountResponse getAccountById(String id) {
         return accountMapper.getAccountResponseOfAccount(
                 accountRepository.findById(id)
-                        .orElseThrow(() -> new NoSuchElementException("Credit Card not found"))
+                        .orElseThrow(() -> new NoSuchElementException("Cuenta no encontrada"))
         );
     }
 
@@ -93,6 +92,6 @@ public class AccountServiceImpl implements AccountService {
     public void deleteAccountById(String id) {
         accountRepository.findById(id)
                 .ifPresentOrElse(accountRepository::delete,
-                        () -> { throw new NoSuchElementException("Credit Card not found"); });
+                        () -> { throw new NoSuchElementException("Cuenta no encontrada"); });
     }
 }
