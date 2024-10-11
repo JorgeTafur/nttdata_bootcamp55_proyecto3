@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Proyecto3Application" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.nttdata.proyecto3.Proyecto3Application" />
+    <module name="proyecto3" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.nttdata.proyecto3.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
