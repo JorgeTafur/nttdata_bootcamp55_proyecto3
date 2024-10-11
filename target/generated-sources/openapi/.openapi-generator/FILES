@@ -1,0 +1,17 @@
+src/main/java/com/nttdata/proyecto3/api/ApiUtil.java
+src/main/java/com/nttdata/proyecto3/api/ClientesApi.java
+src/main/java/com/nttdata/proyecto3/api/ClientesApiController.java
+src/main/java/com/nttdata/proyecto3/api/ClientesApiDelegate.java
+src/main/java/com/nttdata/proyecto3/api/CuentasApi.java
+src/main/java/com/nttdata/proyecto3/api/CuentasApiController.java
+src/main/java/com/nttdata/proyecto3/api/CuentasApiDelegate.java
+src/main/java/com/nttdata/proyecto3/api/TransaccionesApi.java
+src/main/java/com/nttdata/proyecto3/api/TransaccionesApiController.java
+src/main/java/com/nttdata/proyecto3/api/TransaccionesApiDelegate.java
+src/main/java/com/nttdata/proyecto3/model/AccountRequest.java
+src/main/java/com/nttdata/proyecto3/model/AccountResponse.java
+src/main/java/com/nttdata/proyecto3/model/Amount.java
+src/main/java/com/nttdata/proyecto3/model/CustomerRequest.java
+src/main/java/com/nttdata/proyecto3/model/CustomerResponse.java
+src/main/java/com/nttdata/proyecto3/model/TransactionRequest.java
+src/main/java/com/nttdata/proyecto3/model/TransactionResponse.java

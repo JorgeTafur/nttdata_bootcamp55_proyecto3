@@ -1,0 +1,456 @@
+openapi: 3.0.1
+info:
+  title: Banco XYZ Services
+  description: API para gestionar transacciones del Banco XYZ
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+    description: Servidor local
+paths:
+  /clientes:
+    get:
+      tags:
+        - cliente
+      summary: Listar clientes
+      operationId: listCustomers.
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerResponse'
+        default:
+          description: Error en la obtención de clientes
+    post:
+      tags:
+        - cliente
+      summary: Crear un cliente
+      operationId: registerCustomer
+      requestBody:
+        description: Registrar un cliente
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerRequest"
+      responses:
+        '200':
+          description: Cliente registrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en la creacion de cliente
+  /clientes/{id}:
+    get:
+      tags:
+        - cliente
+      summary: Obtener datos de un cliente
+      operationId: getCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cliente obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en obtener datos del cliente
+    put:
+      tags:
+        - cliente
+      summary: Actualizar un cliente
+      operationId: updateCustomer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Detalles del cliente actualizada
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerRequest"
+      responses:
+        '200':
+          description: Cliente actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerResponse"
+        default:
+          description: Error en la actualización de cliente
+    delete:
+      tags:
+        - cliente
+      summary: Eliminar cliente por su ID
+      operationId: deleteCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cliente eliminado
+        default:
+          description: Error al eliminar el cliente
+  /cuentas:
+    get:
+      tags:
+        - cuenta
+      summary: Listar cuentas
+      operationId: listAccounts.
+      responses:
+        '200':
+          description: Lista de cuentas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+        default:
+          description: Error en la obtención de cuentas
+    post:
+      tags:
+        - cuenta
+      summary: Crear una cuenta
+      operationId: registerAccount
+      requestBody:
+        description: Registrar una cuenta
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountRequest"
+      responses:
+        '200':
+          description: Cuenta registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en la creacion de cuenta
+  /cuentas/{id}:
+    get:
+      tags:
+        - cuenta
+      summary: Obtener datos de una cuenta
+      operationId: getAccountById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cuenta obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en obtener datos de la cuenta
+    delete:
+      tags:
+        - cuenta
+      summary: Eliminar cuenta por su ID
+      operationId: deleteAccountById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Cuenta eliminada
+        default:
+          description: Error en eliminar la cuenta
+  /cuentas/{numeroCuenta}/depositar:
+    put:
+      tags:
+        - cuenta
+      summary: Realizar un depósito en una cuenta bancaria
+      operationId: depositAccount
+      parameters:
+        - name: numeroCuenta
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Monto a depositar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Amount"
+      responses:
+        '200':
+          description: Depósito realizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en el depósito en la cuenta
+  /cuentas/{numeroCuenta}/retirar:
+    put:
+      tags:
+        - cuenta
+      summary: Realizar un retiro de una cuenta bancaria
+      operationId: withdrawAccount
+      parameters:
+        - name: numeroCuenta
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Monto a depositar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Amount"
+      responses:
+        '200':
+          description: Retiro realizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountResponse"
+        default:
+          description: Error en el retiro en la cuenta
+  /transacciones/historial:
+    get:
+      tags:
+        - transaccion
+      summary: Listar transacciones
+      operationId: listTransactions.
+      responses:
+        '200':
+          description: Lista de transacciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionResponse'
+        default:
+          description: Error en la obtención de transacciones
+  /transacciones/deposito:
+    post:
+      tags:
+        - transaccion
+      summary: Crear una transaccion de tipo Deposito
+      operationId: registerTransactionDeposito
+      requestBody:
+        description: Registrar una transaccion de tipo Deposito
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionRequest"
+      responses:
+        '200':
+          description: Transaccion tipo Deposito registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionResponse"
+        default:
+          description: Error en la creacion de transaccion tipo Deposito
+  /transacciones/retiro:
+    post:
+      tags:
+        - transaccion
+      summary: Crear una transaccion de tipo Retiro
+      operationId: registerTransactionRetiro
+      requestBody:
+        description: Registrar una transaccion de tipo Retiro
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionRequest"
+      responses:
+        '200':
+          description: Transaccion tipo Retiro registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionResponse"
+        default:
+          description: Error en la creacion de transaccion tipo Retiro
+  /transacciones/transferencia:
+    post:
+      tags:
+        - transaccion
+      summary: Crear una transaccion de tipo Transferencia
+      operationId: registerTransactionTransferencia
+      requestBody:
+        description: Registrar una transaccion de tipo Transferencia
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionRequest"
+      responses:
+        '200':
+          description: Transaccion tipo Transferencia registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionResponse"
+        default:
+          description: Error en la creacion de transaccion tipo Transferencia
+components:
+  schemas:
+    CustomerRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del cliente
+        nombre:
+          type: string
+          description: Nombre del cliente
+        apellido:
+          type: string
+          description: Apellido del cliente
+        dni:
+          type: string
+          description: DNI del cliente
+        email:
+          type: string
+          description: Email del cliente
+    CustomerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+          description: Nombre del cliente
+        apellido:
+          type: string
+          description: Apellido del cliente
+        dni:
+          type: string
+          description: DNI del cliente
+        email:
+          type: string
+          description: Email del cliente
+    AccountRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la cuenta
+        numeroCuenta:
+          type: string
+          description: Numero de la cuenta
+        saldo:
+          type: number
+          format: double
+          description: Saldo de la cuenta
+        tipoCuenta:
+          type: string
+          description: Tipo de la cuenta (AHORROS, CORRIENTE)
+        clienteId:
+          type: string
+          description: ID del cliente de la cuenta
+    AccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la cuenta
+        numeroCuenta:
+          type: string
+          description: Numero de la cuenta
+        saldo:
+          type: number
+          format: double
+          description: Saldo de la cuenta
+        tipoCuenta:
+          type: string
+          description: Tipo de la cuenta (AHORROS, CORRIENTE)
+        clienteId:
+          type: string
+          description: ID del cliente de la cuenta
+    Amount:
+      type: object
+      properties:
+        monto:
+          type: number
+          format: double
+          description: Monto a depositar o retirar
+          example: 100.0
+    TransactionRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la transaccion
+        tipo:
+          type: string
+          description: Tipo de transaccion (DEPOSITO, RETIRO, TRANSFERENCIA)
+        monto:
+          type: number
+          format: double
+          description: Monto de la transaccion
+        fecha:
+          type: string
+          format: date
+          description: Fecha de la transaccion
+        cuentaOrigen:
+          type: string
+          description: Cuenta Origen de la transaccion RETIRO o TRANSFERENCIA
+        cuentaDestino:
+          type: string
+          description: Cuenta Destino de la transaccion DEPOSITO o TRANSFERENCIA
+    TransactionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único de la transaccion
+        tipo:
+          type: string
+          description: Tipo de transaccion (DEPOSITO, RETIRO, TRANSFERENCIA)
+        monto:
+          type: number
+          format: double
+          description: Monto de la transaccion
+        fecha:
+          type: string
+          format: date
+          description: Fecha de la transaccion
+        cuentaOrigen:
+          type: string
+          description: Cuenta Origen de la transaccion RETIRO o TRANSFERENCIA
+        cuentaDestino:
+          type: string
+          description: Cuenta Destino de la transaccion DEPOSITO o TRANSFERENCIA
