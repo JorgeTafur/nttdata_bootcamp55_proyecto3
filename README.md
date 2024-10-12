@@ -1,5 +1,7 @@
 # nttdata_bootcamp55_proyecto3
 
+# Abrir en IntelliJ IDEA la carpeta "proyecto3"
+
 reemplazar accesos a base de datos mysql por credenciales propias
 
     application.properties
