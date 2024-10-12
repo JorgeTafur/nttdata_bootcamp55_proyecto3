@@ -8,7 +8,7 @@ reemplazar accesos a base de datos mysql por credenciales propias
 
 crear base de datos mysql. Se considera el puerto por defecto
 
-	CREATE database banco_xyz;
+    CREATE database banco_xyz;
 
 crear base de datos mongodb. Se considera el puerto por defecto
 
@@ -19,7 +19,7 @@ al ejecutar el programa se crearan las tablas y colecciones automaticamente.
 
 para generar el api y modelo, ejecutar comando
 
-	mvn clean install
+    mvn clean install
 
 probar en postman en rutas de ejemplo:
 
@@ -107,3 +107,15 @@ POST: http://localhost:8080/api/transacciones/transferencia
 
 Se decidió omitir el tipo de transaccion en el post ya que se considera redundante al estar definido en el endpoint.
 La fecha es automática de igual modo.
+
+
+# Reportes
+
+    mvn clean test
+    mvn jacoco:report
+
+# Checkstyle
+
+Pendiente levantar las observaciones
+
+    mvn checkstyle:check
